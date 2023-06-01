@@ -1,108 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap 5.2.3</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+      integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="//unpkg.com/alpinejs" defer></script>
+  </head>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Bootstrap 5.2.3</title>
-        <link
-                                                          rel="stylesheet"
-                                                          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
-                                                          integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
-                                                          crossorigin="anonymous"
-                                                          referrerpolicy="no-referrer" />
-        <script src="//unpkg.com/alpinejs" defer></script>
-    </head>
+  <body>
+    <div class="container mt-5 p-2">
+      <table class="table" x-data="data">
+        <thead>
+          <tr>
+            <th scope="col" colspan="5">
+              <span x-text="open? 'opened' : 'closed'"></span>
 
-    <body>
-        <div class="container mt-5 p-2">
-            <table class="table" x-data="data">
-                <thead>
-                    <tr>
-                        <th
-                                                                          scope="col"
-                                                                          colspan="5">
-                            <span x-text="open? 'opened' : 'closed'"></span>
+              <button type="button" x-on:click="toggle()">toggle</button>
+            </th>
+          </tr>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">#</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">CNPJ</th>
+            <th scope="col">Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">
+              <button
+                type="button"
+                x-on:click="mostrarDependentesDoTiago = !mostrarDependentesDoTiago"
+              >
+                +
+              </button>
+            </th>
+            <th scope="row">1</th>
+            <td>Tiago</td>
+            <td>564654</td>
+            <td>Remover</td>
+          </tr>
 
-                            <button type="button" x-on:click="toggle()">toggle</button>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col">#</th>
-                        <th scope="col">Cliente</th>
-                        <th scope="col">CNPJ</th>
-                        <th scope="col">Ação</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">
-                            <button
-                                type="button"
-                                x-on:click="mostrarDependentesDoTiago = !mostrarDependentesDoTiago"
-                            >+</button>
-                        </th>
-                        <th scope="row"> 1 </th>
-                        <td>Tiago</td>
-                        <td>564654</td>
-                        <td>Remover</td>
-                    </tr>
+          <tr x-show="mostrarDependentesDoTiago">
+            <th scope="row"></th>
+            <th scope="row">2</th>
+            <td>Eris</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr x-show="mostrarDependentesDoTiago">
+            <th scope="row"></th>
+            <th scope="row">3</th>
+            <td>Paulo</td>
+            <td></td>
+            <td></td>
+          </tr>
 
-                    <tr x-show="mostrarDependentesDoTiago">
-                        <th scope="row"></th>
-                        <th scope="row"> 2 </th>
-                        <td>Eris</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr x-show="mostrarDependentesDoTiago">
-                        <th scope="row"></th>
-                        <th scope="row"> 3 </th>
-                        <td>Paulo</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-
-                    <tr>
-                        <th scope="row">
-                            <button type="button">+</button>
-                        </th>
-                        <th scope="row"> 4 </th>
-                        <td>Pedro</td>
-                        <td>56465</td>
-                        <td>Remover</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            <button type="button">+</button>
-                        </th>
-                        <th scope="row"> 5 </th>
-                        <td>João</td>
-                        <td>56465</td>
-                        <td>Remover</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <!-- <script
+          <tr>
+            <th scope="row">
+              <button type="button">+</button>
+            </th>
+            <th scope="row">4</th>
+            <td>Pedro</td>
+            <td>56465</td>
+            <td>Remover</td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <button type="button">+</button>
+            </th>
+            <th scope="row">5</th>
+            <td>João</td>
+            <td>56465</td>
+            <td>Remover</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- <script
             src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.bundle.min.js"
             integrity="sha512-i9cEfJwUwViEPFKdC1enz4ZRGBj8YQo6QByFTF92YXHi7waCqyexvRD75S5NVTsSiTv7rKWqG9Y5eFxmRsOn0A=="
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         ></script> -->
-        <script>
-            function data() {
-                return {
-                    open: false,
-                    mostrarDependentesDoTiago: false,
+    <script>
+      function data() {
+        return {
+          open: false,
+          mostrarDependentesDoTiago: false,
 
-                    toggle() {
-                        this.open = !this.open
-                    },
-                }
-            }
-        </script>
-    </body>
-
+          toggle() {
+            this.open = !this.open;
+          },
+        };
+      }
+    </script>
+  </body>
 </html>
