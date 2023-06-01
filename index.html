@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap 5.2.3</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+      integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="//unpkg.com/alpinejs" defer></script>
+  </head>
+
+  <body>
+    <div class="container mt-5 p-2">
+      <table class="table" x-data="data">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Contrato</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Cliente ID</th>
+            <th scope="col">Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <template x-for="cliente in clientes">
+            <template x-for="integrante in cliente.integrantes">
+              <tr x-show="integrante.mostrar">
+                <th scope="row">
+                  <button
+                    x-show="showExpandButton(cliente, integrante)"
+                    x-on:click="toggleMostrarDependentes(cliente.numero)"
+                    type="button"
+                  >
+                    +
+                  </button>
+                </th>
+                <th scope="row" x-text="cliente.numero"></th>
+                <td>
+                    <span x-text="integrante.nome"></span>
+                    <span x-text="integrante.ativo ? '' : '(inativo)'"></span>
+                </td>
+                <td x-text="integrante.id"></td>
+                <td>
+                    <button
+                        x-show="!integrante.titular && integrante.ativo"
+                        x-on:click="integrante.ativo = false"
+                        type="button"
+                    >
+                        Remover
+                    </button>
+                </td>
+              </tr>
+            </template>
+          </template>
+        </tbody>
+      </table>
+    </div>
+    <!-- <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.bundle.min.js"
+            integrity="sha512-i9cEfJwUwViEPFKdC1enz4ZRGBj8YQo6QByFTF92YXHi7waCqyexvRD75S5NVTsSiTv7rKWqG9Y5eFxmRsOn0A=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script> -->
+    <script>
+      function data() {
+        return {
+          toggleMostrarDependentes(contrato) {
+            this.clientes
+              .filter((cliente) => cliente.numero == contrato)
+              .forEach((cliente) => {
+                cliente.integrantes.map((integrante) => {
+                  if (integrante.titular) {
+                    return;
+                  }
+
+                  integrante.mostrar = !integrante.mostrar;
+                });
+              });
+          },
+          showExpandButton(cliente, integrante) {
+            return integrante.titular && cliente?.integrantes?.length > 1;
+          },
+          clientes: [
+            {
+              numero: 123,
+              integrantes: [
+                {
+                  nome: "Tiago",
+                  id: 1654546,
+                  titular: true,
+                  mostrar: true,
+                  ativo: true,
+                },
+                {
+                  nome: "Éris",
+                  id: 1654547,
+                  titular: false,
+                  mostrar: false,
+                  ativo: true,
+                },
+                {
+                  nome: "Paulo",
+                  id: 1654548,
+                  titular: false,
+                  mostrar: false,
+                  ativo: true,
+                },
+                {
+                  nome: "João",
+                  id: 1654549,
+                  titular: false,
+                  mostrar: false,
+                  ativo: false,
+                },
+              ],
+            },
+            {
+              numero: 124,
+              integrantes: [
+                {
+                  nome: "Pedro",
+                  id: 1654556,
+                  titular: true,
+                  mostrar: true,
+                  ativo: true,
+                },
+              ],
+            },
+          ],
+        };
+      }
+    </script>
+  </body>
+</html>

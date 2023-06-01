@@ -1,0 +1,7 @@
+{
+    "livePreview.hostIP": "0.0.0.0",
+    "livePreview.previewDebounceDelay": 800,
+    "livePreview.httpHeaders": {
+        "Accept-Ranges": "bytes"
+    }
+}
